@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "LinkHub",
+  "description": "A hub for all your Links!",
+  "version": "1.0.0",
+  "browser_action": {
+    "default_icon": "favicon-16x16.png",
+    "default_popup": "popup.html",
+    "default_title": "LinkHub"
+  },
+  "permissions": [
+    "identity",
+    "tabs",
+    "webNavigation",
+    "http://localhost:8080/*",
+    "*://*.google.com/*",
+    "storage",
+    "alarms",
+    "cookies"
+  ]
+  ,
+  "web_accessible_resources": [
+    "/oauth2/*"
+  ],
+    "background": {
+      "scripts": ["eventPage.js"],
+      "persistent": false
+    }
+}
