@@ -8,10 +8,21 @@
   <body style="width:400px;">
     <div id="all">
       <h1>LinkHub</h1>
-        <ul>
-          <li><button id="saveBtn">Save to Linkhub</button></li>
-        </ul>
-
+      <button id="saveBtn">Save to Linkhub</button>
+      <div id="login-info">
+        <form id="auth-form">
+          <div class="form-row">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" />
+          </div>
+          <div class="form-row">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        <p id="login-error-message"></p>
+      </div>
     </div>
     <script src="popup.js"></script>
   </body>

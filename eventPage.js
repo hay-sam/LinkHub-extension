@@ -1,3 +1,5 @@
+/* global chrome */
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({ status: 0 }, (innerObj) => {
     chrome.storage.local.get(['status'], (storageObj) => {
@@ -34,11 +36,11 @@ chrome.extension.onMessage.addListener(async (request, sender, sendResponse) => 
     chrome.storage.local.get(['user'], (storageObj) => {
       console.log(storageObj.user, "userId");
       let xhr = new XMLHttpRequest();
-      let reqURL = `https://link--hub.herokuapp.com/api/users/${storageObj.user}/posts`;
+      let reqURL = `http://localhost:8080/api/users/${storageObj.user}/posts`;
       console.log("reqURL", reqURL)
       xhr.open('POST', reqURL, true);
       xhr.setRequestHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin');
-      xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://link--hub.herokuapp.com/');
+      xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://localhost:8080/');
 
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.withCredentials = true;
