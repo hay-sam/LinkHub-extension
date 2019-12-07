@@ -1,8 +1,10 @@
 /* global chrome */
 const saveBtn = document.getElementById('saveBtn');
-const pageSavedMessage = document.getElementById('page-saved-message')
+const saveForm = document.getElementById('save');
+const tags = document.getElementById('tags')
+const googleBtn = document.getElementById('google');
 const loginForm = document.getElementById('auth-form')
-const userName = document.getElementById('username')
+const userName = document.getElementById('email')
 const password = document.getElementById('password')
 const loginErrorMessage = document.getElementById('login-error-message')
 const loginInfo = document.getElementById('login-info')
@@ -16,16 +18,24 @@ let currentUrl
 chrome.tabs.query({active: true, currentWindow: true}, tabs => {
   currentUrl = tabs[0].url
 })
-
-saveBtn.addEventListener('click', function(event) {
+googleBtn.addEventListener('click', function (event){
+  chrome.tabs.create({ url: "https://link--hub.herokuapp.com/auth/google" })
+})
+saveForm.addEventListener('submit', function(event) {
   event.preventDefault()
+  let postTags
+  if(!!tags.value.length){
+    postTags = tags.value.split(',').map(tag=>tag.trim())
+  }else{
+    postTags = []
+  }
   fetch('http://localhost:8080/auth/me', {
     method: 'GET',
     mode: 'cors',
     credentials: 'include'
   }).then(res =>
     res.json().then(user =>
-      fetch(`http://localhost:8080/api/users/${user.id}/posts`, {
+      fetch(`https://link--hub.herokuapp.com/api/users/${user.id}/posts`, {
         method: 'POST',
         mode: 'cors',
         credentials: 'include',
@@ -34,7 +44,7 @@ saveBtn.addEventListener('click', function(event) {
         },
         body: JSON.stringify({
           url : currentUrl,
-          tags: []
+          tags: postTags
         })
       })
     )
@@ -45,7 +55,7 @@ saveBtn.addEventListener('click', function(event) {
 
 loginForm.addEventListener('submit', function(event) {
   event.preventDefault()
-  fetch('http://localhost:8080/auth/login', {
+  fetch('https://link--hub.herokuapp.com/auth/login', {
     method: 'POST',
     mode: 'cors',
     credentials: 'include',
@@ -72,7 +82,7 @@ loginForm.addEventListener('submit', function(event) {
 
 async function checkLoginStatus() {
   try{
-    let response = await fetch('http://localhost:8080/auth/me', {
+    let response = await fetch('https://link--hub.herokuapp.com/auth/me', {
     method: 'GET',
     mode: 'cors',
     credentials: 'include'
@@ -82,7 +92,7 @@ async function checkLoginStatus() {
       logoutButton.innerText = 'Logout'
       logoutButton.onclick = async function() {
         try{
-          await fetch('http://localhost:8080/auth/logout', {
+          await fetch('https://link--hub.herokuapp.com/auth/logout', {
           method: 'POST',
           mode: 'cors',
           credentials: 'include'
@@ -93,8 +103,9 @@ async function checkLoginStatus() {
         }
       }//end logout function
       loginInfo.appendChild(logoutButton)
+      googleBtn.style.display = "none"
       loginForm.style.display = "none"
-      saveBtn.style.display = "block"
+      saveForm.style.display = "flex"
     }
   }
 

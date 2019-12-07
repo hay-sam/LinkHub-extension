@@ -8,27 +8,15 @@
     "default_popup": "popup.html",
     "default_title": "LinkHub"
   },
-  "externally_connectable" : {
-    "matches": [
-      "http://localhost:8080/*",
-      "https://link--hub.herokuapp.com/"
-    ],
-    "accepts_tls_channel_id": false
-  },
   "permissions": [
     "identity",
     "tabs",
     "http://localhost:8080/*",
     "https://link--hub.herokuapp.com/*",
-    "storage",
     "cookies"
   ]
   ,
   "web_accessible_resources": [
     "/oauth2/*"
-  ],
-    "background": {
-      "scripts": ["eventPage.js"],
-      "persistent": false
-    }
+  ]
 }

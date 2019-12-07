@@ -8,16 +8,23 @@
   <body style="width:400px;">
     <div id="all">
       <h1>LinkHub</h1>
-      <button id="saveBtn">Save to Linkhub</button>
+      <form id="save">
+          <div class="form-row">
+              <label for="tags">Tags <small>Separate tags with a comma</small></label>
+              <input type="text" id="tags" name="tags"/>
+          </div>
+        <button id="saveBtn" type="submit">Save to Linkhub</button>
+      </form>
+      <button id="google"><img id="google-img" src="google-logo.png">Google Login</button>
       <div id="login-info">
         <form id="auth-form">
           <div class="form-row">
-              <label for="username">Username</label>
-              <input type="text" id="username" name="username" />
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required/>
           </div>
           <div class="form-row">
               <label for="password">Password</label>
-              <input type="password" id="password" name="password" />
+              <input type="password" id="password" name="password" required/>
           </div>
           <button type="submit">Login</button>
         </form>

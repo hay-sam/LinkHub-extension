@@ -7,7 +7,9 @@ body {
   text-align: center;
   align-items: center;
 }
-
+button{
+  height: 30px;
+}
 h1 {
   font-size: 15px;
   color: #000000;
@@ -22,8 +24,8 @@ h1 {
 button{
   border-radius: 5px;
   text-align: center;
-  width: 200px;
-  margin: 4px;
+  width: 208px;
+  margin: 5px;
   color: rgba(156, 92, 156, 0.9);
   border: solid  rgba(156, 92, 156, 0.596) 2px;
   padding: 2px;
@@ -34,6 +36,8 @@ button:hover{
   color: white;
 }
 .form-row{
+  display: flex;
+  flex-direction: column;
   border-radius: 5px;
   color: rgba(156, 92, 156, 0.9);
   border: solid  rgba(156, 92, 156, 0.596) 2px;
@@ -43,17 +47,28 @@ button:hover{
   background: white;
 }
 .form-row input{
-  border-radius: 5px;;
+  border-radius: 5px;
   padding: 3px;
-  margin-left: 3px;
   border: solid  rgba(156, 92, 156, 0.596) 2px;
 }
-#saveBtn{
-  display: none;
-}
+
 #saveBtn[disabled]{
   background: none;
   border: none;
   color: white;
   font-weight: 700;
+}
+
+#google-img{
+  height: 10px;
+  margin-right: 10px;
+  width: auto;
+  padding: 3px;
+  background-color: white;
+  border-radius: 50%;
+}
+#save{
+  display:none;
+  flex-direction: column;
+  align-items: center;
 }
