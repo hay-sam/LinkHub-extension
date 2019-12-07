@@ -8,7 +8,11 @@ const userName = document.getElementById('email')
 const password = document.getElementById('password')
 const loginErrorMessage = document.getElementById('login-error-message')
 const loginInfo = document.getElementById('login-info')
+const title = document.getElementById("title")
 
+title.addEventListener('click', function (event){
+  chrome.tabs.create({ url: "https://link--hub.herokuapp.com/" })
+})
 
 
 
@@ -29,7 +33,7 @@ saveForm.addEventListener('submit', function(event) {
   }else{
     postTags = []
   }
-  fetch('http://localhost:8080/auth/me', {
+  fetch('https://link--hub.herokuapp.com/auth/me', {
     method: 'GET',
     mode: 'cors',
     credentials: 'include'
@@ -50,7 +54,7 @@ saveForm.addEventListener('submit', function(event) {
     )
   )
   saveBtn.disabled = true;
-  saveBtn.innerHTML = `<span>Saved to LinkHub</span>`
+  saveForm.innerHTML = `<p>Saved to LinkHub</p>`
 })
 
 loginForm.addEventListener('submit', function(event) {
