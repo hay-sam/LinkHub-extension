@@ -11,6 +11,6 @@ Currently pending approval in the chrome web store, but in the mean time you can
 After making an account at <https://link--hub.herokuapp.com/> you'll be able to log in the extension!
 Just click on the extension icon, tag your post, and click save!
 
-View your saved links at <https://link--hub.herokuapp.com/>
+View your saved links at your own personal [LinkHub](https://link--hub.herokuapp.com/)
 
 
