@@ -8,6 +8,9 @@ Created in four days as part of Grace Hopper Stackathon. Uses React, Redux, Node
 # How to use it
 Currently pending approval in the chrome web store, but in the mean time you can clone this file and follow [this tutorial](https://developer.chrome.com/extensions/getstarted) to get it set up on your own browser!
 
-Website deployed at <https://link--hub.herokuapp.com/>
+After making an account at <https://link--hub.herokuapp.com/> you'll be able to log in the extension!
+Just click on the extension icon, tag your post, and click save!
+
+View your saved links at <https://link--hub.herokuapp.com/>
 
 
