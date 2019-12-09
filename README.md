@@ -6,7 +6,7 @@ Meet LinkHub! A hub for YOUR links! A website with a companion chrome extension 
 Created in four days as part of Grace Hopper Stackathon. Uses React, Redux, Node.js, Express, postgreSQL, chrome API's, and other 3rd party API's
 
 # How to use it
-Currently pending approval in the chrome web store, but in the mean time you can clone this file and follow [this tutorial](https://developer.chrome.com/extensions/getstarted) to get it set up on your own browser!
+Not in the chrome store, but if you would like to use it you can clone this repo and follow [this tutorial](https://developer.chrome.com/extensions/getstarted) to get it set up on your own browser!
 
 After making an account at <https://link--hub.herokuapp.com/> you'll be able to log in the extension!
 Just click on the extension icon, tag your post, and click save!
