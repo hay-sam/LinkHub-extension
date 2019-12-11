@@ -10,21 +10,28 @@ const loginErrorMessage = document.getElementById('login-error-message')
 const loginInfo = document.getElementById('login-info')
 const title = document.getElementById("title")
 
+// Route to LinkHub to view saved Links
 title.addEventListener('click', function (event){
   chrome.tabs.create({ url: "https://link--hub.herokuapp.com/" })
 })
 
 
 
-
+// Make sure the correct components are being rendered
+// Show Login if not logged in / Post Saving if logged in
 checkLoginStatus()
+
 let currentUrl
 chrome.tabs.query({active: true, currentWindow: true}, tabs => {
   currentUrl = tabs[0].url
 })
+
+// Authenticate with server through oauth
 googleBtn.addEventListener('click', function (event){
   chrome.tabs.create({ url: "https://link--hub.herokuapp.com/auth/google" })
 })
+
+// Save Link
 saveForm.addEventListener('submit', function(event) {
   event.preventDefault()
   let postTags
@@ -33,13 +40,13 @@ saveForm.addEventListener('submit', function(event) {
   }else{
     postTags = []
   }
-  fetch('https://link--hub.herokuapp.com/auth/me', {
+  fetch('https://link--hub.herokuapp.com/auth/me', { // Authenticate with server
     method: 'GET',
     mode: 'cors',
     credentials: 'include'
   }).then(res =>
     res.json().then(user =>
-      fetch(`https://link--hub.herokuapp.com/api/users/${user.id}/posts`, {
+      fetch(`https://link--hub.herokuapp.com/api/users/${user.id}/posts`, { // Save Post
         method: 'POST',
         mode: 'cors',
         credentials: 'include',
@@ -53,10 +60,11 @@ saveForm.addEventListener('submit', function(event) {
       })
     )
   )
-  saveBtn.disabled = true;
+  saveBtn.disabled = true; // Change view to reflect that link has been saved
   saveForm.innerHTML = `<p>Saved to LinkHub</p>`
 })
 
+// Local Login with server
 loginForm.addEventListener('submit', function(event) {
   event.preventDefault()
   fetch('https://link--hub.herokuapp.com/auth/login', {
@@ -86,12 +94,12 @@ loginForm.addEventListener('submit', function(event) {
 
 async function checkLoginStatus() {
   try{
-    let response = await fetch('https://link--hub.herokuapp.com/auth/me', {
+    let response = await fetch('https://link--hub.herokuapp.com/auth/me', { // Check if already logged in
     method: 'GET',
     mode: 'cors',
     credentials: 'include'
   })
-  if (response.status === 200) {
+  if (response.status === 200) { // If logged in, make logout button
       const logoutButton = document.createElement('button')
       logoutButton.innerText = 'Logout'
       logoutButton.onclick = async function() {
@@ -106,7 +114,7 @@ async function checkLoginStatus() {
           console.error(error)
         }
       }//end logout function
-      loginInfo.appendChild(logoutButton)
+      loginInfo.appendChild(logoutButton) // Update View to hide login, and show save and logout buttons
       googleBtn.style.display = "none"
       loginForm.style.display = "none"
       saveForm.style.display = "flex"

@@ -9,7 +9,6 @@
     "default_title": "LinkHub"
   },
   "permissions": [
-    "identity",
     "tabs",
     "http://localhost:8080/*",
     "https://link--hub.herokuapp.com/*",
